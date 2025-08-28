@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
 /* ============ Styled ============ */
-const ProjectsSection = styled.section`
+const ProjectsSection = styled.section<{ $bg?: string }>`
   padding: 3rem 1.5rem;
    font-family: ${({ theme }) => theme.typography.fontFamily};
   background: ${({ theme }) => theme.gradients.hero};

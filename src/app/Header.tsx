@@ -92,6 +92,11 @@ const Nav = styled.nav<{ $open: boolean }>`
 const Logo = styled.div`
   display: flex;
   align-items: center;
+
+  a {
+    display: flex;
+    align-items: center;
+}
 `;
 
 const NavList = styled.ul<{ $open: boolean }>`
@@ -119,7 +124,6 @@ const StyledLink = styled.a<{ $active: boolean }>`
   font-weight: ${({ $active }) => ($active ? 600 : 400)};
   text-decoration: none;
   transition: color 0.2s;
-
   &:hover {
     color: ${({ theme }) => theme.palette.primary.main};
   }

@@ -47,27 +47,91 @@ export const getAppTheme = (mode: PaletteMode) =>
       fontFamily: roboto.style.fontFamily,
       h1: {
         fontWeight: 800,
-        fontSize: "3rem",
+        fontSize: "3rem",       // ~48px
+        lineHeight: 1.2,
         "@media (max-width:768px)": {
-          fontSize: "2.4rem", // smaller on mobile
+          fontSize: "2.2rem",   // ~35px
         },
       },
       h2: {
         fontWeight: 700,
-        fontSize: "2rem",
+        fontSize: "2.25rem",    // ~36px
+        lineHeight: 1.3,
         "@media (max-width:768px)": {
-          fontSize: "1.75rem",
+          fontSize: "1.9rem",   // ~30px
         },
       },
       h3: {
         fontWeight: 600,
-        fontSize: "1.75rem",
+        fontSize: "1.75rem",    // ~28px
         lineHeight: 1.35,
         "@media (max-width:768px)": {
-          fontSize: "1.5rem",
+          fontSize: "1.5rem",   // ~24px
         },
       },
-      body1: { fontSize: "1rem", lineHeight: 1.6 },
+      h4: {
+        fontWeight: 600,
+        fontSize: "1.5rem",     // ~24px
+        lineHeight: 1.4,
+        "@media (max-width:768px)": {
+          fontSize: "1.3rem",   // ~21px
+        },
+      },
+      h5: {
+        fontWeight: 500,
+        fontSize: "1.25rem",    // ~20px
+        lineHeight: 1.45,
+        "@media (max-width:768px)": {
+          fontSize: "1.1rem",   // ~18px
+        },
+      },
+      h6: {
+        fontWeight: 500,
+        fontSize: "1.1rem",     // ~18px
+        lineHeight: 1.5,
+        "@media (max-width:768px)": {
+          fontSize: "1rem",     // ~16px
+        },
+      },
+
+      body1: {
+        fontSize: "1rem",       // 16px
+        lineHeight: 1.6,
+        fontWeight: 400,
+      },
+      body2: {
+        fontSize: "0.875rem",   // 14px
+        lineHeight: 1.55,
+        fontWeight: 400,
+      },
+
+      subtitle1: {
+        fontSize: "0.95rem",    // ~15px
+        fontWeight: 400,
+        lineHeight: 1.5,
+      },
+      subtitle2: {
+        fontSize: "0.85rem",    // ~13.6px
+        fontWeight: 400,
+        lineHeight: 1.45,
+      },
+
+      button: {
+        textTransform: "none",
+        fontWeight: 600,
+        fontSize: "0.95rem",
+      },
+      caption: {
+        fontSize: "0.75rem",    // 12px
+        lineHeight: 1.4,
+        fontWeight: 400,
+      },
+      overline: {
+        fontSize: "0.75rem",    // 12px
+        fontWeight: 500,
+        textTransform: "uppercase",
+        letterSpacing: "0.08em",
+      },
     },
     // All gradients live here (no hardcoded colors in components)
     gradients:

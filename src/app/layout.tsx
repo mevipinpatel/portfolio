@@ -7,7 +7,10 @@ import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useMemo, useState, useEffect } from "react"; 
 import getAppTheme from "@/theme";
-import Header from "./header/page";
+//import Header from "./header/page";
+import Header from "./Header";
+
+
 import Footer from "./footer/page";
 
 const geistSans = localFont({
@@ -36,7 +39,7 @@ export default function RootLayout({
 
   const theme = useMemo(() => getAppTheme(mode), [mode]);
 
-
+ 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
@@ -46,7 +49,9 @@ export default function RootLayout({
             <StyledThemeProvider theme={theme}>
               <CssBaseline />
               {/* Example: pass a setter so header can toggle */}
+              {/* <Header onToggle={handleToggle} /> */}
               <Header onToggle={() => setMode((m) => (m === "light" ? "dark" : "light"))} />
+              {/* <Header onToggle={() => setMode((m) => (m === "light" ? "dark" : "light"))} /> */}
               <main>{children}</main>
               <Footer />
             </StyledThemeProvider>
