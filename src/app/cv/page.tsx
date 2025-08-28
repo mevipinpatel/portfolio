@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
 import styled from "styled-components";
-import { useTheme } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 
 const ResumeWrapper = styled.section`
@@ -54,8 +53,7 @@ const DownloadLink = styled.a`
   }
 `;
 export default function Cv() {
-  const theme = useTheme();
-
+   
   return (
     <ResumeWrapper>
       <ResumeCard>

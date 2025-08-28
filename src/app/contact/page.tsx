@@ -2,6 +2,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Typography, useTheme } from "@mui/material";
+import { Theme } from "@mui/material/styles";
+
 
 export default function Contact() {
   const theme = useTheme();
@@ -16,7 +18,7 @@ export default function Contact() {
 
   return (
     <Main theme={theme}>
-      <Article theme={theme}> 
+      <Article theme={theme}>
         <Typography variant="h1" className="title">Connect With Us</Typography>
         <ContactList>
           <ContactItem theme={theme} as="section" aria-labelledby="contact-person">
@@ -25,8 +27,8 @@ export default function Contact() {
                 fill="none" stroke="currentColor" strokeWidth="2"
                 strokeLinecap="round" strokeLinejoin="round"
                 aria-hidden="true">
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
               </svg>
             </Icon>
             <Info>
@@ -62,7 +64,7 @@ export default function Contact() {
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                 fill="none" stroke="currentColor" strokeWidth="2"
                 strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
               </svg>
             </Icon>
             <Info>
@@ -84,8 +86,8 @@ export default function Contact() {
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                 fill="none" stroke="currentColor" strokeWidth="2"
                 strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
             </Icon>
             <Info>
@@ -102,9 +104,9 @@ export default function Contact() {
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                 fill="none" stroke="currentColor" strokeWidth="2"
                 strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-                <path d="M2 12h20"/>
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                <path d="M2 12h20" />
               </svg>
             </Icon>
             <Info>
@@ -130,7 +132,7 @@ export default function Contact() {
 /*  Styled Components    */
 /* ===================== */
 
-const Main = styled.section<{ theme: any }>`
+const Main = styled.section<{ theme: Theme }>`
  font-family: ${({ theme }) => theme.typography.fontFamily};
   background: ${({ theme }) => theme.gradients.hero};
   color: ${({ theme }) => theme.palette.text.primary};
@@ -142,7 +144,7 @@ const Main = styled.section<{ theme: any }>`
   font-family: "Inter", sans-serif; 
 `;
 
-const Article = styled.article<{ theme: any }>`
+const Article = styled.article<{ theme: Theme }>`
    background: ${({ theme }) => theme.palette.background.paper};
   padding: 3rem;
   border-radius: 1.5rem;
@@ -163,7 +165,7 @@ const Article = styled.article<{ theme: any }>`
   }
 `;
 
- 
+
 
 const ContactList = styled.ul`
   display: grid;
@@ -175,7 +177,7 @@ const ContactList = styled.ul`
   }
 `;
 
-const ContactItem = styled.li<{ theme: any }>`
+const ContactItem = styled.li<{ theme: Theme }>`
   display: flex;
   align-items: center;
   gap: 1.25rem;
@@ -209,13 +211,13 @@ const Icon = styled.div<{ color: string }>`
 
 const Info = styled.div``;
 
-const Label = styled.h2<{ theme: any }>`
+const Label = styled.h2<{ theme: Theme }>`
   font-size: 0.875rem;
   font-weight: 500;
   color: ${({ theme }) => theme.palette.text.secondary};
 `;
 
-const Value = styled.p<{ theme: any }>`
+const Value = styled.p<{ theme: Theme }>`
   font-size: 1.25rem;
   font-weight: 700;
   color: ${({ theme }) => theme.palette.text.primary};
@@ -224,7 +226,7 @@ const Value = styled.p<{ theme: any }>`
   }
 `;
 
-const Link = styled.a<{ color: string; theme: any }>`
+const Link = styled.a<{ color: string; theme: Theme }>`
   font-size: 1.25rem;
   font-weight: 700;
   color: ${({ color }) => color};
