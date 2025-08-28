@@ -1,14 +1,14 @@
 "use client";
+import { Typography } from "@mui/material";
 import * as React from "react";
 import styled from "styled-components";
-
+ 
 export default function About() {
+  
   return (
     <Main>
       <Article>
-        <Heading>About Me</Heading>
-
-
+        <Typography variant="h1" className="title">About Me</Typography>
         <Paragraph>
           Hi, I’m a passionate <strong>Frontend Developer</strong> with a strong
           focus on creating responsive, accessible, and user-friendly web
@@ -32,7 +32,10 @@ export default function About() {
         <Paragraph>
           Let’s collaborate and build something amazing together!
         </Paragraph>
-        <ContactButton href="/contact">Contact Me</ContactButton>
+
+        <ContactButton href="/contact">
+          Contact Me
+        </ContactButton>
       </Article>
     </Main>
   );
@@ -43,73 +46,72 @@ export default function About() {
 /* ===================== */
 
 const Main = styled.section`
+  font-family: ${({ theme }) => theme.typography.fontFamily};
+  background: ${({ theme }) => theme.gradients.hero};
+  color: ${({ theme }) => theme.palette.text.primary};
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #bfdbfe, #e9d5ff, #fbcfe8);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1rem;
+  padding: 5rem 1rem 4rem;
 `;
 
 const Article = styled.article`
-  background: rgba(255, 255, 255, 0.9);
+  background: ${({ theme }) => theme.palette.background.paper};
   padding: 3rem;
   border-radius: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows[2]};
   max-width: 50rem;
   width: 100%;
-  border: 1px solid #f3f4f6;
+  border: 1px solid ${({ theme }) => theme.palette.divider};
   backdrop-filter: blur(8px);
-  transition: all 0.5s ease;
-
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s ease; 
+    @media (max-width: 767px) {
+    padding: 3rem 1rem;
+  }
+  .title {
+    text-align: center;
+      margin-bottom: 2.5rem;
+      background: ${({ theme }) => theme.gradients.brand};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
   }
 `;
 
-const Heading = styled.h1`
-  font-size: 2.5rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 2rem;
-  background: linear-gradient(to right, #4f46e5, #7c3aed);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;
+// const Heading = styled.h1`
+//   font-size: 2.5rem;
+//   font-weight: 800;
+//   text-align: center;
+//   margin-bottom: 2rem;
+//   background: ${({ theme }) => theme.gradients.brand};
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+// `;
 
 const ContactButton = styled.a`
-  display: inline-block;
-  background: linear-gradient(to right, #4f46e5, #7c3aed);
-  color: white;
+ background: ${({ theme }) => theme.gradients.brand};
+  color: ${({ theme }) => theme.palette.primary.contrastText};
   padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  font-weight: bold;
-  font-size: 1rem;
+  border-radius: ${({ theme }) => `${theme.shape.borderRadius}px`};
+  font-size: 1.1rem;
   text-decoration: none;
-  margin-bottom: 2rem;
-  box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+   box-shadow: ${({ theme }) => theme.shadows[2]};
   transition: all 0.3s ease;
 
   &:hover {
-    background: linear-gradient(to right, #4338ca, #6d28d9);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.5);
-  }
-
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 5px 10px rgba(79, 70, 229, 0.3);
+    background: ${({ theme }) => theme.gradients.brandAlt};
+     
   }
 `;
 
 const Paragraph = styled.p`
   font-size: 1.125rem;
   line-height: 1.7;
-  color: #374151;
   margin-bottom: 1.25rem;
 
+  color: ${({ theme }) => theme.palette.text.secondary};
+
   strong {
-    color: #4f46e5;
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 `;

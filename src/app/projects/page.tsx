@@ -1,52 +1,53 @@
 "use client";
 import * as React from "react";
 import styled from "styled-components";
+import { useTheme } from "@mui/material/styles";
+import { Typography } from "@mui/material";
 
 /* ============ Styled ============ */
-
 const ProjectsSection = styled.section`
   padding: 3rem 1.5rem;
-  background: linear-gradient(180deg, #f8faff 0%, #eef3ff 100%);
-`;
+   font-family: ${({ theme }) => theme.typography.fontFamily};
+  background: ${({ theme }) => theme.gradients.hero};
+  color: ${({ theme }) => theme.palette.text.primary};
 
-const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  color: #1e3a8a;
-  font-weight: 700;
-`;
+  @media (max-width: 767px) {
+    padding: 3rem 1rem;
+  }
+  .title {
+   text-align: center;
+    margin-bottom: 2.5rem;
+    background: ${({ theme }) => theme.gradients.brand};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`; 
 
 const ProjectList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-  
-   @media (max-width: 480px) {
+
+  @media (max-width: 480px) {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 `;
 
-const ProjectCard = styled.a`
+const ProjectCard = styled.a<{ $bg: string; $border: string }>`
   display: block;
-  background: #fff;
+  background: ${({ $bg }) => $bg};
   border-radius: 1rem;
   overflow: hidden;
-  border: 1px solid #e0e7ff;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid ${({ $border }) => $border};
   text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  }
+ box-shadow: ${({ theme }) => theme.shadows[2]};
 `;
 
-const CardMedia = styled.div`
+const CardMedia = styled.div<{ $bg: string }>`
   position: relative;
   height: 180px;
-  background: #eef3ff;
+  background: ${({ $bg }) => $bg};
   overflow: hidden;
 `;
 
@@ -73,15 +74,15 @@ const CardContent = styled.div`
   padding: 1.25rem 1.5rem 1.5rem;
 `;
 
-const ProjectTitle = styled.h3`
+const ProjectTitle = styled.h3<{ $color: string }>`
   font-size: 1.25rem;
   margin: 0 0 0.5rem;
-  color: #1e3a8a;
+  color: ${({ $color }) => $color};
 `;
 
-const ProjectDescription = styled.p`
+const ProjectDescription = styled.p<{ $color: string }>`
   font-size: 0.95rem;
-  color: #4b5563;
+  color: ${({ $color }) => $color};
   margin: 0 0 1rem;
   line-height: 1.55;
 `;
@@ -93,30 +94,29 @@ const TechStackWrapper = styled.div`
   margin-bottom: 0.75rem;
 `;
 
-const TechBadge = styled.span`
-  background: #eef3ff;
-  color: #3367d6;
+const TechBadge = styled.span<{ $bg: string; $color: string }>`
+  background: ${({ $bg }) => $bg};
+  color: ${({ $color }) => $color};
   font-size: 0.75rem;
   padding: 0.3rem 0.6rem;
   border-radius: 9999px;
   font-weight: 500;
 `;
 
-const Hint = styled.p`
+const Hint = styled.p<{ $color: string }>`
   font-size: 0.85rem;
-  color: #6b7280;
+  color: ${({ $color }) => $color};
   margin: 0.25rem 0 0;
 `;
 
 /* ============ Helper ============ */
-
-// Deterministic placeholder (no random URLs → avoids hydration mismatch)
 const placeholderFor = (title: string) =>
   `https://placehold.co/800x450/png?text=${encodeURIComponent(title)}`;
 
 /* ============ Component ============ */
-
 export default function Projects() {
+  const theme = useTheme();
+
   const projects: {
     title: string;
     description: string;
@@ -216,19 +216,26 @@ export default function Projects() {
     ];
 
   return (
-    <ProjectsSection>
-      <SectionTitle>Projects</SectionTitle>
+    <ProjectsSection $bg={theme.palette.background.default}>
+      {/* <SectionTitle $color={theme.palette.primary.main}>Projects</SectionTitle> */}
+      <Typography variant="h1" className="title">Projects</Typography>
       <ProjectList>
         {projects.map((proj, idx) => {
-          const src = proj.image || placeholderFor(proj.title);
+          const src = placeholderFor(proj.title);
           return (
-            <ProjectCard key={`${proj.title}-${idx}`} href={proj.link} target="_blank" rel="noopener noreferrer">
-              <CardMedia>
+            <ProjectCard
+              key={`${proj.title}-${idx}`}
+              href={proj.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              $bg={theme.palette.background.paper}
+              $border={theme.palette.divider}
+            >
+              <CardMedia $bg={theme.palette.action.hover}>
                 <ProjectImage
                   src={src}
                   alt={`${proj.title} project thumbnail`}
                   onError={(e) => {
-                    // Fallback if a custom image fails to load
                     const target = e.currentTarget as HTMLImageElement;
                     target.src = placeholderFor(proj.title);
                   }}
@@ -237,16 +244,28 @@ export default function Projects() {
               </CardMedia>
 
               <CardContent>
-                <ProjectTitle>{proj.title}</ProjectTitle>
-                <ProjectDescription>{proj.description}</ProjectDescription>
+                <ProjectTitle $color={theme.palette.primary.main}>
+                  {proj.title}
+                </ProjectTitle>
+                <ProjectDescription $color={theme.palette.text.secondary}>
+                  {proj.description}
+                </ProjectDescription>
 
                 <TechStackWrapper>
                   {proj.stack.map((tech, i) => (
-                    <TechBadge key={i}>{tech}</TechBadge>
+                    <TechBadge
+                      key={i}
+                      $bg={theme.palette.action.hover}
+                      $color={theme.palette.primary.main}
+                    >
+                      {tech}
+                    </TechBadge>
                   ))}
                 </TechStackWrapper>
 
-                <Hint>Click to view project →</Hint>
+                <Hint $color={theme.palette.text.disabled}>
+                  Click to view project →
+                </Hint>
               </CardContent>
             </ProjectCard>
           );

@@ -1,13 +1,15 @@
 "use client";
 import * as React from "react";
-import { Box, Typography, Button, IconButton } from "@mui/material";
+import { Box, Typography, Button, IconButton, useTheme } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import Image from "next/image";
+
 export default function Footer() {
+  const theme = useTheme();
   const [year, setYear] = React.useState<number | null>(null);
-const logo = 'logo.png'
+  const logo = "logo.png";
+
   React.useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
@@ -16,8 +18,12 @@ const logo = 'logo.png'
     <Box
       component="footer"
       sx={{
-        background: "linear-gradient(to right, #3d3d3d, #111827)",
-        color: "white",
+        background: `linear-gradient(
+          to right, 
+          ${theme.palette.background.default}, 
+          ${theme.palette.background.paper}
+        )`,
+        color: theme.palette.text.primary,
         py: 4,
         mt: 6,
         textAlign: "center",
@@ -26,7 +32,7 @@ const logo = 'logo.png'
       {/* Logo */}
       <Box sx={{ display: "flex", justifyContent: "center", mb: 1 }}>
         <Image
-           src={logo}
+          src={logo}
           alt="Logo"
           width={120}
           height={50}
@@ -50,25 +56,18 @@ const logo = 'logo.png'
       <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mb: 2 }}>
         <IconButton
           color="inherit"
-          href="https://github.com/yourusername"
+          href="https://github.com/mevipinpatel"
           target="_blank"
         >
           <GitHubIcon />
         </IconButton>
         <IconButton
           color="inherit"
-          href="https://linkedin.com/in/yourusername"
+          href="https://linkedin.com/in/vipinpatels"
           target="_blank"
         >
           <LinkedInIcon />
-        </IconButton>
-        <IconButton
-          color="inherit"
-          href="https://twitter.com/yourusername"
-          target="_blank"
-        >
-          <TwitterIcon />
-        </IconButton>
+        </IconButton> 
       </Box>
 
       {/* Footer Links */}
@@ -102,8 +101,8 @@ const logo = 'logo.png'
       </Box>
 
       {/* Copyright */}
-      <Typography variant="caption" color="gray">
-       Made with ❤️ by Vipin Patel
+      <Typography variant="caption" color="text.secondary">
+        © {year} — Made with ❤️ by Vipin Patel
       </Typography>
     </Box>
   );
